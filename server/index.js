@@ -25,3 +25,11 @@ app.post('/contact', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Calico Media site running at http://localhost:${PORT}`);
 });
+
+
+function openMenu() {
+  document.body.classList.add("menu--open");
+}
+function closeMenu() {
+  document.body.classList.remove("menu--open");
+}
