@@ -19,6 +19,11 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family:
@@ -59,10 +64,6 @@ h3 {
 
 p {
   margin: 0 0 16px;
-}
-
-a {
-  color: var(--teal);
 }
 
 img {
@@ -183,6 +184,18 @@ img {
   padding: 0;
 }
 
+.nav-links--feat,
+.nav-links--price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+}
+
 .nav-links a {
   color: var(--ink);
   text-decoration: none;
@@ -261,6 +274,7 @@ img {
 
 .hero-text {
   flex: 1;
+  min-width: 0;
 }
 
 .hero-text .lead {
@@ -277,14 +291,16 @@ img {
 .hero-media {
   width: 600px;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 .hero-image {
-  width: 100%;
+  max-width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
   border-radius: var(--radius);
+  width: 100%;
   display: block;
+  object-fit: cover;
 }
 
 /* Trust strip */
@@ -763,60 +779,7 @@ img {
   padding-top: 24px;
 }
 
-@media (max-width: 768px) {
-  h1 {
-    font-size: 40px;
-  }
-
-  h2 {
-    font-size: 30px;
-  }
-
-  .section {
-    padding: 64px 0;
-  }
-
-  .feature-row {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    margin-bottom: 64px;
-  }
-
-  .feature-row--reverse .feature-media {
-    order: 0;
-  }
-
-  .card-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .contact-layout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  h1 {
-    font-size: 34px;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cta-body {
-    padding: 32px 24px;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-}
+/* Mobile drawer */
 
 .btn__menu {
   background-color: transparent;
@@ -831,6 +794,7 @@ img {
   filter: invert(26%) sepia(94%) saturate(7476%) hue-rotate(261deg)
     brightness(94%) contrast(115%);
 }
+
 .menu {
   position: fixed;
   top: 0;
@@ -843,14 +807,12 @@ img {
   justify-content: center;
   align-items: center;
   z-index: 999;
-
   visibility: hidden;
   opacity: 0;
   transform: translateX(100%);
   transition: all 0.3s ease-in-out;
 }
 
-/* 2. Shown when the body has the .menu--open class */
 body.menu--open {
   overflow: hidden;
 }
@@ -898,31 +860,40 @@ body.menu--open .menu {
   border-radius: 500px;
   border: none;
 }
-/* Enable hamburger button on mobile/tablet */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
+
+@media (max-width: 875px) {
+  .hero-inner {
+    gap: 32px;
   }
-  .btn__menu {
-    display: block;
+
+  .hero-media {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    max-width: 600px;
+  }
+
+  .site-header--home .container {
+    gap: 12px 16px;
+  }
+
+  .site-header--home .nav-links a {
+    padding: 0 8px;
+    font-size: 15px;
+  }
+
+  .site-header--home .nav-links .btn {
+    margin-left: 8px;
+    padding: 8px 14px;
+    font-size: 14px;
   }
 }
-/* Enable hamburger button on mobile/tablet */
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-  }
-  .btn__menu {
-    display: block;
-  }
-}
-/* When the body has the class, show the menu */
 
 @media (max-width: 768px) {
   h1 {
     font-size: 40px;
-    flex-wrap: wrap;
   }
+
   p {
     font-size: 16px;
   }
@@ -957,125 +928,44 @@ body.menu--open .menu {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
   }
+
   .hero-inner {
     flex-direction: column-reverse;
     gap: 32px;
-    overflow: hidden;
   }
-  .hero-image {
-    object-fit: scale-down;
+
+  .hero-media {
+    width: 100%;
     max-width: 100%;
-    flex-shrink: 1;
-    aspect-ratio: 16 /9;
-    object-fit: cover;
+    flex: none;
   }
+
+  .hero-image {
+    object-fit: cover;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
   .nav-links {
     display: none;
   }
+
   .btn__menu {
     display: block;
   }
+
   .playbook-grid {
     display: flex;
     flex-direction: column;
     gap: 28px;
-  }
-
-  .menu--open {
-    max-height: 100vh;
-    overflow-y: hidden;
-    display: block;
-    align-items: center;
-  }
-  /* 1. Hide the menu by default on mobile */
-  .menu {
-    display: none;
-  }
-
-  /* 2. Show the menu when the body has the 'menu--open' class */
-  body.menu--open .menu {
-    display: block; /* Or 'flex' depending on your layout */
-  }
-  /* --- Mobile Menu Styles --- */
-
-  .btn__menu {
-    background-color: transparent;
-    border: none;
-    display: none;
-    cursor: pointer;
-    transition: all 300ms ease;
-  }
-
-  .btn__menu--svg:hover {
-    filter: invert(26%) sepia(94%) saturate(7476%) hue-rotate(261deg)
-      brightness(94%) contrast(115%);
-  }
-
-  /* 1. The menu container hidden by default */
-  .menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--ink); /* Matches your dark theme */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-
-    /* Hidden state */
-    visibility: hidden;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.3s ease-in-out;
-  }
-
-  /* 2. Shown when the body has the .menu--open class */
-  body.menu--open {
-    overflow: hidden; /* Prevents background scrolling when menu is open */
-  }
-
-  body.menu--open .menu {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .menu__links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .menu__link {
-    color: var(--white);
-    font-size: 22px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  /* Enable hamburger button only on mobile/tablet */
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-    .btn__menu {
-      display: block;
-    }
   }
 }
 
 @media (max-width: 480px) {
   h1 {
     font-size: 24px;
-    flex-wrap: wrap;
   }
+
   p {
     font-size: 16px;
   }
@@ -1091,117 +981,16 @@ body.menu--open .menu {
   .footer-grid {
     grid-template-columns: 1fr;
   }
+
   .hero-inner {
     gap: 24px;
     flex-direction: column-reverse;
-    overflow: hidden;
   }
+
   .hero-image,
   .hero-media {
-    object-fit: scale-down;
+    object-fit: cover;
     max-width: 100%;
-    flex-shrink: 1;
-  }
-  .nav-links {
-    display: none;
-  }
-
-  .playbook-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-  }
-  body.menu--open .menu {
-    display: block;
-  }
-
-  /* 2. Show the menu when the body has the 'menu--open' class */
-  .menu--open .menu {
-    display: block; /* Or 'flex' depending on your layout */
-  }
-  /* --- Mobile Menu Styles --- */
-
-  .btn__menu {
-    background-color: transparent;
-    border: none;
-    display: none;
-    cursor: pointer;
-    transition: all 300ms ease;
-  }
-
-  .btn__menu--svg:hover {
-    filter: invert(26%) sepia(94%) saturate(7476%) hue-rotate(261deg)
-      brightness(94%) contrast(115%);
-    color: #e2672f;
-  }
-
-  /* 1. The menu container hidden by default */
-  .menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--ink); /* Matches your dark theme */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-
-    /* Hidden state */
-    visibility: hidden;
-    opacity: 0;
-    transform: translateX(100%);
-    transition: all 0.3s ease-in-out;
-  }
-
-  /* 2. Shown when the body has the .menu--open class */
-  body.menu--open {
-    overflow: hidden; /* Prevents background scrolling when menu is open */
-  }
-
-  body.menu--open .menu {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .btn__menu--close {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    color: var(--white);
-    cursor: pointer;
-  }
-
-  .menu__links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .menu__link {
-    color: var(--white);
-    font-size: 22px;
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  /* Enable hamburger button only on mobile/tablet */
-  @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-    .btn__menu {
-      display: block;
-    }
+    width: 100%;
   }
 }

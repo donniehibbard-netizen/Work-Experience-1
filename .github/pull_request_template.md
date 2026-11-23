@@ -3,7 +3,7 @@
 ## What changed
 
 <!-- What did you change, and why? Point the reviewer at anything non-obvious. -->
-changed the nav bar to wrap as screen shrinks and added hamburg menu, the hero image centering/wrapping in container, and made the card section be able to go to one column
+
 ## Before
 
 <!-- Screenshots for visual changes, numbers for performance changes, or the behaviour you saw. -->
