@@ -23,6 +23,9 @@ html,
 body {
   overflow-x: hidden;
 }
+a {
+  color: var(--teal);
+}
 
 body {
   margin: 0;
@@ -182,18 +185,6 @@ img {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.nav-links--feat,
-.nav-links--price {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px 28px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  color: #000000;
 }
 
 .nav-links a {
@@ -946,10 +937,9 @@ body.menu--open .menu {
     aspect-ratio: 16 / 9;
   }
 
-  .nav-links {
+  .site-header--home .nav-links {
     display: none;
   }
-
   .btn__menu {
     display: block;
   }
@@ -962,11 +952,13 @@ body.menu--open .menu {
 }
 
 @media (max-width: 480px) {
-  h1 {
+  .site-header--home,
+  .hero h1 {
     font-size: 24px;
   }
 
-  p {
+  .site-header--home,
+  .hero p {
     font-size: 16px;
   }
 
